@@ -9,19 +9,21 @@
 
 class Solution:
     def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
-        def preOrder(root, L, R):
-            sum = 0 
-            if root:
-                isSmall = root.val < L
-                isBig = root.val > R
+        # nested function 이므로 L,R에 바로 접근 가능. 인자로 넣어주지 않아도 됨. 
+        # 또한 바깥 변수를 shadowing 하지 않게 하자. 겹치는 이름을 쓰지 말자. 
+        def preOrder(node):
+            sum = 0
+            if node:
+                isSmall = node.val < L
+                isBig = node.val > R
                 if not isSmall and not isBig:
-                    sum += root.val + preOrder(root.right, L, R) + preOrder(root.left, L, R)
+                    sum += node.val + preOrder(node.right) + preOrder(node.left)
                 elif isSmall:
-                    sum += preOrder(root.right, L, R)
+                    sum += preOrder(node.right)
                 else:
-                    sum += preOrder(root.left, L, R)
+                    sum += preOrder(node.left)
             return sum 
-        return preOrder(root, L, R)
+        return preOrder(root)
 
 # Runtime: 208 ms, faster than 99.60% of Python3 online submissions for Range Sum of BST.
 # Memory Usage: 21.8 MB, less than 29.73% of Python3 online submissions for Range Sum of BST.
