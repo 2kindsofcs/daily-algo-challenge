@@ -1,6 +1,5 @@
 # https://github.com/2kindsofcs/daily-algo-challenge.git
 
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -13,14 +12,21 @@ class Solution:
         def preOrder(root, L, R):
             sum = 0 
             if root:
-                if root.val >= L and root.val <= R:
+                isSmall = root.val < L
+                isBig = root.val > R
+                if not isSmall and not isBig:
                     sum += root.val
-                sum += preOrder(root.left, L, R)
-                sum += preOrder(root.right, L, R)
+                    sum += preOrder(root.right, L, R)                    
+                    sum += preOrder(root.left, L, R)
+                elif isSmall:
+                    sum += preOrder(root.right, L, R)
+                elif isBig:
+                    sum += preOrder(root.left, L, R)
             return sum 
         return preOrder(root, L, R)
 
+# Runtime: 236 ms, faster than 64.77% of Python3 online submissions for Range Sum of BST.
+# Memory Usage: 22 MB, less than 5.20% of Python3 online submissions for Range Sum of BST.
 
-# Runtime: 300 ms, faster than 28.68% of Python3 online submissions for Range Sum of BST.
-# Memory Usage: 21.9 MB, less than 5.20% of Python3 online submissions for Range Sum of BST.
-# 재귀를 이용해서 일단 풀었는데 굉장히 느리고 메모리도 많이 잡아 먹는다. 
+# 각 노드의 값은 고유하다고 했고, BST 특성을 이용하면 노드 값이 L보다 작다면 해당 노드의 왼쪽 자식은 애초에 검사할 필요가 없음.
+# 반대로 오른쪽은 R보다 크면 오른쪽 자식을 검사할 필요가 없음. 이를 활용해서 조금 고쳐보았는데, 속도는 조금 빨라졌지만 코드가 썩 맘에 들지는 않는다.
