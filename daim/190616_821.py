@@ -28,14 +28,13 @@ class Solution:
             # case 2. C is not yet desplayed
             if c_pos_idx == 0:
                 # Calculate absolute value
-                result.append(abs(idx - c_pos_list[c_pos_idx]))
+                result.append(c_pos_list[c_pos_idx]- idx)
                 continue
 
             # Case 3. if new C, compare distance between previous C's index and current C's index
             if c_pos_idx < len(c_pos_list):
-                result.append(min(abs(idx - c_pos_list[c_pos_idx -1]), abs(idx - c_pos_list[c_pos_idx])))
+                result.append(min(idx - c_pos_list[c_pos_idx -1], c_pos_list[c_pos_idx] - idx))
             else:
                 # No new C exists
-                result.append(abs(idx - c_pos_list[c_pos_idx -1]))
+                result.append(idx - c_pos_list[c_pos_idx -1])
         return result
-
