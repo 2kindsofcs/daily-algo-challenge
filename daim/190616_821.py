@@ -1,6 +1,6 @@
 """
 LeetCode : 821. Shortest Distance to a Character
-problem : https://leetcode.com/problems/di-string-match/
+problem : https://leetcode.com/problems/shortest-distance-to-a-character/
 """
 
 class Solution:
