@@ -1,3 +1,8 @@
+"""
+LeetCode : 728. Self Dividing Numbers
+problem : https://leetcode.com/problems/self-dividing-numbers/
+"""
+
 class Solution:
 
     avail_numbers = {}
