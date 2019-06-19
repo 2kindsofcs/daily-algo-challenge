@@ -5,20 +5,19 @@ class Solution:
         currentNum = left
         result = []
         while currentNum <= right:
-            strNum = str(currentNum)
-            if "0" in strNum:
-                pass
-            else:
-                result.append(currentNum)
-                for digit in strNum:
-                    # int 대신 ord로 아스키코드값을 얻어서 이용. 
-                    # 0의 아스키코드값인 48을 빼주면 digit에 해당하는 수가 됨 
-                    if currentNum % (ord(digit)-48) != 0:
-                        result.pop()
-                        break
+            result.append(currentNum)
+            quotient = currentNum
+            digit = currentNum % 10
+            while quotient:
+                if digit == 0 or currentNum % digit != 0:
+                    result.pop()
+                    break
+                quotient = quotient // 10
+                digit = quotient % 10
             currentNum = currentNum + 1
         return result
+    
+# Runtime: 44 ms, faster than 98.03% of Python3 online submissions for Self Dividing Numbers.
+# Memory Usage: 13.1 MB, less than 61.09% of Python3 online submissions for Self Dividing Numbers.
 
-# Runtime: 48 ms, faster than 93.41% of Python3 online submissions for Self Dividing Numbers.
-# Memory Usage: 13.2 MB, less than 29.61% of Python3 online submissions for Self Dividing Numbers.
-# string으로 만들었던 수를 int를 이용해 다시 수를 만드는 대신 ord를 이용. 속도가 좀 더 빨라졌다. 
+# 확실히 str()을 사용하지 않으니 속도, 메모리양 모두 향상되었다. 
