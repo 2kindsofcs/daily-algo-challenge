@@ -19,13 +19,13 @@ Output: 2
  */
 const majorityElement = nums=>{
     let v;
-	const len = nums.sort().length;
+	const majorityCnt = nums.sort().length / 2;
 	while(nums.length){
 		v = nums[0];
-		if(nums.splice(0, nums.lastIndexOf(v) + 1).length > len / 2) break;
-	}    
+		if(nums.splice(0, nums.lastIndexOf(v) + 1).length > majorityCnt) break;
+	}
 	return v;
 };
 
-// 다른 답안을 보니 정렬한 건 괜찮은데, 그 뒤에 while 돌릴 필요 없이 배열에서 중앙 인덱스의 값을 리턴하면 됨.
+// 다른 답안을 보니 정렬한 것 까진 괜찮은데, 그 뒤에 while 돌릴 필요 없이 배열에서 중앙 인덱스의 값을 리턴하면 됨.
 // 무조건 과반 이상을 차지할거니까- 무조건 배열 중앙에 위치하게 됨
