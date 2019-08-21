@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: int
         """
         
-        maxProfit = 0;
+        maxProfit = 0
         minPriceSoFar = float('inf')
         
         for curPrice in prices: 
