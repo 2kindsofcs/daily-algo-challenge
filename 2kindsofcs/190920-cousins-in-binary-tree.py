@@ -13,25 +13,32 @@ class Solution:
         q.put(root)
         xP, yP = 0, 0
         children = []
-        while q:
+        while not q.empty():
             node = q.get()
             if node:
                 children.append(node.left)
                 children.append(node.right)
             if q.empty():
-                valueList = [ child.val for child in children ]
+                valueList = []
+                for child in children:
+                    if child:
+                        valueList.append(child.val)
+                    else:
+                        valueList.append(-1)
                 if x in valueList and y in valueList:
                     xP = valueList.index(x) // 2
                     yP = valueList.index(y) // 2
-                    if xP and yP and xP != yP:
+                    if xP != yP:
                         return True
                     else:
                         return False
                 for child in children:
                     if child:
-                        q.put(child.left)
-                        q.put(child.right)
+                        q.put(child)
                 children = []
         return False
-    
-# time limit exceeded가 뜬다. 어디선가 무한반복이 되고 있다는 것. 
+            
+                
+# Runtime: 48 ms, faster than 6.64% of Python3 online submissions for Cousins in Binary Tree.
+# Memory Usage: 14.1 MB, less than 6.12% of Python3 online submissions for Cousins in Binary Tree.
+# 큐가 비었는지 확인하는 것을 while q 라고 했더니 무한 반복에 빠진 것이었다. q가 비어있더라도 if q는 True이다.
