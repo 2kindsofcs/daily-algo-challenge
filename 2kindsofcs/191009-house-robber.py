@@ -7,3 +7,6 @@ class Solution:
             total += nums[index]
             return max(robMax(index + 2, total), robMax(index + 3, total))
         return max(robMax(0,0), robMax(1,0))
+
+    
+# time limit exceeded
