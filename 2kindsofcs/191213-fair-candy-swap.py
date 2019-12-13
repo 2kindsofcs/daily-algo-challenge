@@ -4,17 +4,11 @@ class Solution:
         BLength = len(B)
         Asum = sum(A)
         Bsum = sum(B)
-        diff = Asum - Bsum
-        checked = {}
-        for i in range(ALength):
-            if A[i] not in checked:
-                checked[A[i]] = []
-            for j in range(BLength):
-                if B[j] in checked[A[i]]:
-                    continue
-                if diff == ((2 * A[i]) - (2 * B[j])):
-                    return [A[i], B[j]]
-                else:
-                    checked[A[i]].append(B[j])  
+        halfDiff = (Asum - Bsum) / 2
+        for i in range(BLength):
+            target = halfDiff + B[i]
+            if target in A:
+                return [int(target), B[i]]
+ 
         
- # Time limit exceeded
+ # O(n)으로 줄였지만 여전히 Time limit exceeded
